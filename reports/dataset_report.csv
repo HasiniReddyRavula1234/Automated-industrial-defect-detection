@@ -1,0 +1,16 @@
+Category,Train Images,Test Images,No. of Defect Types,Defect Types
+bottle,209,83,3,"broken_large, broken_small, contamination"
+cable,224,150,8,"bent_wire, cable_swap, combined, cut_inner_insulation, cut_outer_insulation, missing_cable, missing_wire, poke_insulation"
+capsule,219,132,5,"crack, faulty_imprint, poke, scratch, squeeze"
+carpet,280,117,5,"color, cut, hole, metal_contamination, thread"
+grid,264,78,5,"bent, broken, glue, metal_contamination, thread"
+hazelnut,391,110,4,"crack, cut, hole, print"
+leather,245,124,5,"color, cut, fold, glue, poke"
+metal_nut,220,115,4,"bent, color, flip, scratch"
+pill,267,167,7,"color, combined, contamination, crack, faulty_imprint, pill_type, scratch"
+screw,320,160,5,"manipulated_front, scratch_head, scratch_neck, thread_side, thread_top"
+tile,230,117,5,"crack, glue_strip, gray_stroke, oil, rough"
+toothbrush,60,42,1,defective
+transistor,213,100,4,"bent_lead, cut_lead, damaged_case, misplaced"
+wood,247,79,5,"color, combined, hole, liquid, scratch"
+zipper,240,151,7,"broken_teeth, combined, fabric_border, fabric_interior, rough, split_teeth, squeezed_teeth"
