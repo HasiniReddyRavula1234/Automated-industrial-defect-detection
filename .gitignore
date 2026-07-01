@@ -1,0 +1,9 @@
+# Ignore original dataset
+mvtec_anomaly_detection/
+
+# Ignore processed dataset
+processed_dataset/
+
+# Python cache
+__pycache__/
+*.pyc
