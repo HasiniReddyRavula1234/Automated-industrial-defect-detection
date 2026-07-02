@@ -1,8 +1,15 @@
 # Ignore original dataset
 mvtec_anomaly_detection/
+dataset/
 
 # Ignore processed dataset
 processed_dataset/
+
+# Ignore trained model outputs
+results/
+
+# Ignore virtual environment
+venv/
 
 # Python cache
 __pycache__/
