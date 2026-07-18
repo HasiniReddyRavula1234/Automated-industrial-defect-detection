@@ -1,48 +1,55 @@
 # 🏭 Automated Industrial Defect Detection using PatchCore
 
-## 📌 Overview
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.5-orange)
+![Anomalib](https://img.shields.io/badge/Anomalib-2.5-green)
+![License](https://img.shields.io/badge/License-Academic-lightgrey)
 
-Automated Industrial Defect Detection is an AI-based quality inspection system that identifies defective industrial products using deep learning.
+---
 
-Instead of manually inspecting products, this system uses the **PatchCore anomaly detection algorithm** to classify products as **Good** or **Defective**.
+# 📌 Overview
 
-The project is built using the **MVTec Anomaly Detection Dataset** and the **Anomalib** framework.
+Automated Industrial Defect Detection is an AI-based quality inspection system that helps identify defective industrial products automatically.
+
+Instead of checking every product manually, this project uses the **PatchCore anomaly detection algorithm** to determine whether a product is **Good** or **Defective**. The model is trained using the **MVTec Anomaly Detection Dataset** and implemented with the **Anomalib** framework.
+
+The current implementation demonstrates the complete workflow for the **Bottle** category, including training, testing, and single-image prediction.
 
 ---
 
 # 🚀 Problem Statement
 
-In manufacturing industries, manual inspection of products is:
+In manufacturing industries, maintaining product quality is very important because even a small defect can affect the performance of the product and reduce customer satisfaction. Traditionally, products are inspected manually by workers to identify defects such as cracks, scratches, dents, contamination, or other damages.
 
-- Time-consuming
-- Expensive
-- Error-prone
-- Difficult to scale
+However, manual inspection is not always reliable. It takes a lot of time, requires continuous human effort, and mistakes can happen due to fatigue or lack of consistency. As production increases, inspecting every product accurately becomes even more difficult. This can result in defective products reaching customers or good products being rejected unnecessarily.
 
-This project automates defect detection using Artificial Intelligence, helping industries improve quality control and reduce inspection time.
+Another challenge is that collecting a large number of defective product images for training AI models is difficult because defects occur less frequently than normal products.
+
+The main objective of this project is to build an automated defect detection system that can identify defective products accurately by learning only from normal product images. This helps reduce manual effort, improve inspection accuracy, and makes the quality checking process faster and more efficient.
 
 ---
 
 # 💡 Solution
 
-The system learns the characteristics of **normal products** during training.
+To solve this problem, we developed an automated industrial defect detection system using the **PatchCore** algorithm with the **Anomalib** framework.
 
-During testing:
+The model is trained using only normal images from the **MVTec Anomaly Detection Dataset**. During training, it learns the important features of defect-free products instead of memorizing specific defects. Since the model understands what a normal product looks like, it can easily recognize images that are different from the learned patterns.
 
-- If a test image is similar to normal images → **Good**
-- If a test image is significantly different → **Defective**
+For testing, an input image is passed to the trained model. The model compares its features with the normal features learned during training and generates an anomaly score. If the score is low, the product is classified as **Good**. If the score is high, it is classified as **Defective**.
 
-PatchCore does not require a large number of defective training samples, making it suitable for real-world industrial applications.
+In this project, we implemented the complete workflow for the **Bottle** category of the MVTec AD dataset, including training, testing, and single-image prediction. The model successfully identified both normal and defective bottle images, showing that PatchCore is an effective solution for industrial quality inspection without requiring defective images during training.
 
 ---
 
 # 📂 Dataset
 
-Dataset Used:
+**Dataset Used:** MVTec Anomaly Detection Dataset
 
-**MVTec Anomaly Detection Dataset**
+**Dataset Source:**
 
-Categories include:
+https://www.mvtec.com/company/research/datasets/mvtec-ad
+
+The dataset contains **15 industrial object categories**:
 
 - Bottle
 - Cable
@@ -60,11 +67,11 @@ Categories include:
 - Wood
 - Zipper
 
-Current implementation demonstrates the complete pipeline using the **Bottle** category.
+> **Current implementation is demonstrated using the Bottle category.**
 
 ---
 
-# 🛠 Tech Stack
+# 🛠️ Tech Stack
 
 ## Programming Language
 
@@ -72,16 +79,16 @@ Current implementation demonstrates the complete pipeline using the **Bottle** c
 
 ## Frameworks
 
-- Anomalib
 - PyTorch
+- Anomalib
 - Lightning
 
 ## Libraries
 
-- OpenCV
-- Pillow
-- Pandas
 - NumPy
+- Pandas
+- Pillow
+- OpenCV
 
 ## Development Tools
 
@@ -91,14 +98,41 @@ Current implementation demonstrates the complete pipeline using the **Bottle** c
 
 ---
 
+# ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+cd automated-industrial-defect-detection
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate the environment (Windows):
+
+```bash
+venv\Scripts\activate
+```
+
+Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
 # 📁 Project Structure
 
-```
+```text
 Automated_Industrial_Defect_Detection/
 │
-├── configs/
 ├── dataset/
-│
 ├── preprocessing/
 │   ├── dataset_summary.py
 │   ├── image_validation.py
@@ -109,85 +143,84 @@ Automated_Industrial_Defect_Detection/
 │
 ├── testing/
 │   ├── test.py
-│   ├── predict.py
-│   └── check_prediction.py
+│   └── predict.py
 │
 ├── reports/
 ├── results/
 ├── templates/
-├── models/
-└── README.md
+├── screenshots/
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-# ⚙️ Workflow
+# 🔄 Workflow
 
-```
-MVTec Dataset
-      │
-      ▼
-Dataset Validation & Analysis
-      │
-      ▼
-PatchCore Training
-      │
-      ▼
-Model Checkpoint (.ckpt)
-      │
-      ▼
-Testing
-      │
-      ▼
-Prediction
-      │
-      ▼
-Good / Defective
+```text
+            MVTec AD Dataset
+                    │
+                    ▼
+      Dataset Analysis & Validation
+                    │
+                    ▼
+         PatchCore Model Training
+                    │
+                    ▼
+      Trained Model (model.ckpt)
+                    │
+                    ▼
+      Testing & Single Image Prediction
+                    │
+                    ▼
+        Good / Defective Classification
 ```
 
 ---
 
 # 🧠 Model
 
-Algorithm Used:
+## Algorithm Used
 
 **PatchCore**
 
-Why PatchCore?
+### Why PatchCore?
 
-- State-of-the-art anomaly detection algorithm
-- Learns only from normal images
-- High accuracy
-- Memory-efficient using Coreset Selection
-- Suitable when defective samples are limited
+- Learns using only normal images
+- Does not require defective images for training
+- Uses Coreset Selection to reduce memory usage
+- Generates anomaly scores for each test image
+- Well suited for industrial quality inspection tasks
 
 ---
 
 # 📊 Training
 
-Run:
+Run the following command:
 
 ```bash
 python training/train.py
 ```
 
-The model automatically:
+The training pipeline:
 
 - Loads the Bottle dataset
-- Extracts feature embeddings
+- Extracts image features
 - Performs Coreset Selection
+- Trains the PatchCore model
 - Saves the trained checkpoint
 
-Output:
+The trained model is stored in:
 
-```
+```text
 results/
 └── Patchcore/
     └── MVTecAD/
         └── bottle/
-            └── weights/
-                └── lightning/
-                    └── model.ckpt
+            └── latest/
+                └── weights/
+                    └── lightning/
+                        └── model.ckpt
 ```
 
 ---
@@ -200,13 +233,13 @@ Run:
 python testing/test.py
 ```
 
-The trained model evaluates unseen test images and predicts whether they are normal or defective.
+The trained model evaluates unseen images and predicts whether they are **Good** or **Defective**.
 
 ---
 
 # 🔍 Single Image Prediction
 
-Run:
+Predict a normal image:
 
 ```bash
 python testing/predict.py dataset/bottle/test/good/000.png
@@ -214,7 +247,7 @@ python testing/predict.py dataset/bottle/test/good/000.png
 
 Example Output
 
-```
+```text
 Image      : dataset/bottle/test/good/000.png
 
 Prediction : Good
@@ -222,54 +255,78 @@ Prediction : Good
 Score      : 0.2450
 ```
 
-Another example
+Predict a defective image:
 
 ```bash
 python testing/predict.py dataset/bottle/test/broken_large/000.png
 ```
 
-Output
+Example Output
 
-```
+```text
+Image      : dataset/bottle/test/broken_large/000.png
+
 Prediction : Defective
 
 Score      : 0.9606
 ```
 
-Higher anomaly score indicates a higher probability of defect.
+> A higher anomaly score indicates a higher probability that the product is defective.
+
+---
+
+# 📸 Sample Predictions
+
+## Good Bottle
+
+| Input Image | Prediction |
+|-------------|------------|
+| <img src="screenshots/good_input.png" width="220"> | **Good** ✅ <br> Score: **0.2450** |
+
+---
+
+## Defective Bottle
+
+| Input Image | Prediction |
+|-------------|------------|
+| <img src="screenshots/broken_input.png" width="220"> | **Defective** ❌ <br> Score: **0.9606** |
 
 ---
 
 # 📈 Results
 
-Successfully completed:
+The project successfully demonstrates the complete anomaly detection workflow for the Bottle category.
 
-- Dataset loading
-- PatchCore model training
-- Model checkpoint generation
-- Testing on unseen images
-- Single image prediction
-- Good vs Defective classification
+The implemented system can:
 
----
-
-# 🔮 Future Work
-
-- Train all 15 MVTec categories
-- Add heatmap visualization
-- Real-time webcam inspection
-- Deploy as a web application
-- Industrial production line integration
+- Load the MVTec AD dataset
+- Train a PatchCore model using normal images
+- Generate a trained model checkpoint
+- Predict whether unseen images are Good or Defective
+- Produce anomaly scores for individual images
+- Perform single-image prediction through a simple Python script
 
 ---
 
-# 👩‍💻 Team Members
+# 🔮 Future Scope
 
-| Name | Contribution |
-|------|--------------|
-| Ravula Hasini Reddy | PatchCore model training, testing, prediction module, Git version control |
-| Mula Nikitha | Dataset preprocessing, validation, dataset preparation |
-| Kotagiri Neha | Frontend development (HTML) |
+Some possible improvements for this project include:
+
+- Training models for all 15 MVTec AD categories
+- Generating anomaly heatmaps for defect localization
+- Developing a user-friendly web interface
+- Supporting real-time camera-based inspection
+- Deploying the system for industrial production environments
+
+---
+
+# 👥 Team Contributions
+
+| Team Member | Contribution |
+|-------------|--------------|
+| **Ravula Hasini Reddy** | Implemented the PatchCore model training pipeline, testing module, single-image prediction module, model validation, Git version control, and project documentation. |
+| **Kotagiri Neha** | Developed the frontend interface (HTML) and created and managed the GitLab repository. |
+| **Mula Nikitha** | Implemented dataset preprocessing, image validation, dataset analysis, and preprocessing utilities. |
 
 ---
 
@@ -282,6 +339,6 @@ Successfully completed:
 
 ---
 
-# 📜 License
+# 📄 License
 
-This project was developed for academic purposes as part of a Computer Science Engineering coursework.
+This project was developed as part of a Computer Science Engineering academic group project for learning and educational purposes.
