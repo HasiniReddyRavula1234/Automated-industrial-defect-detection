@@ -1,93 +1,287 @@
-# Automated Industrial Defect Detection
+# 🏭 Automated Industrial Defect Detection using PatchCore
 
+## 📌 Overview
 
+Automated Industrial Defect Detection is an AI-based quality inspection system that identifies defective industrial products using deep learning.
 
-## Getting started
+Instead of manually inspecting products, this system uses the **PatchCore anomaly detection algorithm** to classify products as **Good** or **Defective**.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+The project is built using the **MVTec Anomaly Detection Dataset** and the **Anomalib** framework.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+---
 
-## Add your files
+# 🚀 Problem Statement
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+In manufacturing industries, manual inspection of products is:
+
+- Time-consuming
+- Expensive
+- Error-prone
+- Difficult to scale
+
+This project automates defect detection using Artificial Intelligence, helping industries improve quality control and reduce inspection time.
+
+---
+
+# 💡 Solution
+
+The system learns the characteristics of **normal products** during training.
+
+During testing:
+
+- If a test image is similar to normal images → **Good**
+- If a test image is significantly different → **Defective**
+
+PatchCore does not require a large number of defective training samples, making it suitable for real-world industrial applications.
+
+---
+
+# 📂 Dataset
+
+Dataset Used:
+
+**MVTec Anomaly Detection Dataset**
+
+Categories include:
+
+- Bottle
+- Cable
+- Capsule
+- Carpet
+- Grid
+- Hazelnut
+- Leather
+- Metal Nut
+- Pill
+- Screw
+- Tile
+- Toothbrush
+- Transistor
+- Wood
+- Zipper
+
+Current implementation demonstrates the complete pipeline using the **Bottle** category.
+
+---
+
+# 🛠 Tech Stack
+
+## Programming Language
+
+- Python 3.10
+
+## Frameworks
+
+- Anomalib
+- PyTorch
+- Lightning
+
+## Libraries
+
+- OpenCV
+- Pillow
+- Pandas
+- NumPy
+
+## Development Tools
+
+- VS Code
+- Git
+- GitLab
+
+---
+
+# 📁 Project Structure
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/kotagirinehakumari/automated-industrial-defect-detection.git
-git branch -M main
-git push -uf origin main
+Automated_Industrial_Defect_Detection/
+│
+├── configs/
+├── dataset/
+│
+├── preprocessing/
+│   ├── dataset_summary.py
+│   ├── image_validation.py
+│   └── resize_images.py
+│
+├── training/
+│   └── train.py
+│
+├── testing/
+│   ├── test.py
+│   ├── predict.py
+│   └── check_prediction.py
+│
+├── reports/
+├── results/
+├── templates/
+├── models/
+└── README.md
 ```
 
-## Integrate with your tools
+---
 
-* [Set up project integrations](https://gitlab.com/kotagirinehakumari/automated-industrial-defect-detection/-/settings/integrations)
+# ⚙️ Workflow
 
-## Collaborate with your team
+```
+MVTec Dataset
+      │
+      ▼
+Dataset Validation & Analysis
+      │
+      ▼
+PatchCore Training
+      │
+      ▼
+Model Checkpoint (.ckpt)
+      │
+      ▼
+Testing
+      │
+      ▼
+Prediction
+      │
+      ▼
+Good / Defective
+```
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+---
 
-## Test and Deploy
+# 🧠 Model
 
-Use the built-in continuous integration in GitLab.
+Algorithm Used:
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+**PatchCore**
 
-***
+Why PatchCore?
 
-# Editing this README
+- State-of-the-art anomaly detection algorithm
+- Learns only from normal images
+- High accuracy
+- Memory-efficient using Coreset Selection
+- Suitable when defective samples are limited
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+---
 
-## Suggestions for a good README
+# 📊 Training
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Run:
 
-## Name
-Choose a self-explaining name for your project.
+```bash
+python training/train.py
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+The model automatically:
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+- Loads the Bottle dataset
+- Extracts feature embeddings
+- Performs Coreset Selection
+- Saves the trained checkpoint
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Output:
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+```
+results/
+└── Patchcore/
+    └── MVTecAD/
+        └── bottle/
+            └── weights/
+                └── lightning/
+                    └── model.ckpt
+```
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+---
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+# 🧪 Testing
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Run:
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+```bash
+python testing/test.py
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+The trained model evaluates unseen test images and predicts whether they are normal or defective.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+---
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+# 🔍 Single Image Prediction
 
-## License
-For open source projects, say how it is licensed.
+Run:
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+```bash
+python testing/predict.py dataset/bottle/test/good/000.png
+```
+
+Example Output
+
+```
+Image      : dataset/bottle/test/good/000.png
+
+Prediction : Good
+
+Score      : 0.2450
+```
+
+Another example
+
+```bash
+python testing/predict.py dataset/bottle/test/broken_large/000.png
+```
+
+Output
+
+```
+Prediction : Defective
+
+Score      : 0.9606
+```
+
+Higher anomaly score indicates a higher probability of defect.
+
+---
+
+# 📈 Results
+
+Successfully completed:
+
+- Dataset loading
+- PatchCore model training
+- Model checkpoint generation
+- Testing on unseen images
+- Single image prediction
+- Good vs Defective classification
+
+---
+
+# 🔮 Future Work
+
+- Train all 15 MVTec categories
+- Add heatmap visualization
+- Real-time webcam inspection
+- Deploy as a web application
+- Industrial production line integration
+
+---
+
+# 👩‍💻 Team Members
+
+| Name | Contribution |
+|------|--------------|
+| Ravula Hasini Reddy | PatchCore model training, testing, prediction module, Git version control |
+| Mula Nikitha | Dataset preprocessing, validation, dataset preparation |
+| Kotagiri Neha | Frontend development (HTML) |
+
+---
+
+# 📚 References
+
+- MVTec Anomaly Detection Dataset
+- Anomalib Documentation
+- PyTorch Documentation
+- PatchCore Research Paper
+
+---
+
+# 📜 License
+
+This project was developed for academic purposes as part of a Computer Science Engineering coursework.
