@@ -47,7 +47,7 @@ In this project, we implemented the complete workflow for the **Bottle** categor
 
 **Dataset Source:**
 
-https://www.mvtec.com/company/research/datasets/mvtec-ad
+https://www.mvtec.com/research-teaching/datasets/mvtec-ad/downloads
 
 The dataset contains **15 industrial object categories**:
 
@@ -280,7 +280,7 @@ Score      : 0.9606
 
 | Input Image | Prediction |
 |-------------|------------|
-| <img src="https://gitlab.com/kotagirinehakumari/automated-industrial-defect-detection/-/raw/feature/hasini-training-testing/screenshots/good_input.png" width="220" alt="Good Bottle"> | **Good** ✅<br>**Score:** 0.2450 |
+| <img src="screenshots/good_input.png" width="220" alt="Good Bottle"> | **Good** ✅<br>**Score:** 0.2450 |
 
 ---
 
@@ -288,9 +288,7 @@ Score      : 0.9606
 
 | Input Image | Prediction |
 |-------------|------------|
-| <img src="https://gitlab.com/kotagirinehakumari/automated-industrial-defect-detection/-/raw/feature/hasini-training-testing/screenshots/broken_input.png" width="220" alt="Defective Bottle"> | **Defective** ❌<br>**Score:** 0.9606 |
-
----
+| <img src="screenshots/broken_input.png" width="220" alt="Defective Bottle"> | **Defective** ❌<br>**Score:** 0.9606 |
 
 # 📈 Results
 
