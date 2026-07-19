@@ -274,14 +274,13 @@ Score      : 0.9606
 > A higher anomaly score indicates a higher probability that the product is defective.
 
 ---
-
 # 📸 Sample Predictions
 
 ## Good Bottle
 
 | Input Image | Prediction |
 |-------------|------------|
-| <img src="screenshots/good_input.png" width="220"> | **Good** ✅ <br> Score: **0.2450** |
+| <img src="https://gitlab.com/kotagirinehakumari/automated-industrial-defect-detection/-/raw/feature/hasini-training-testing/screenshots/good_input.png" width="220" alt="Good Bottle"> | **Good** ✅<br>**Score:** 0.2450 |
 
 ---
 
@@ -289,7 +288,7 @@ Score      : 0.9606
 
 | Input Image | Prediction |
 |-------------|------------|
-| <img src="screenshots/broken_input.png" width="220"> | **Defective** ❌ <br> Score: **0.9606** |
+| <img src="https://gitlab.com/kotagirinehakumari/automated-industrial-defect-detection/-/raw/feature/hasini-training-testing/screenshots/broken_input.png" width="220" alt="Defective Bottle"> | **Defective** ❌<br>**Score:** 0.9606 |
 
 ---
 
